@@ -1,6 +1,6 @@
 name: github pages
 
-# masterブランチへプッシュ
+# mainブランチへプッシュ
 on:
   push:
     branches:
