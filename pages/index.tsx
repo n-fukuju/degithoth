@@ -97,7 +97,6 @@ const DialogComponent: FC=()=>{
         '6': {name: 'cloud', width:100, height:100, path: 'images/cloud.svg'},
         '7': {name: 'file', width:100, height:100, path: 'images/file.svg'},
         '8': {name: 'directory', width:100, height:100, path: 'images/directory.svg'},
-        '25': {name: 'text'},
 
         '9': {name: 'arrow_right', width:100, height:100, path:'images/arrow_right.svg'},
         '10': {name: 'arrow_left', width:100, height:100, path:'images/arrow_left.svg'},
@@ -108,26 +107,29 @@ const DialogComponent: FC=()=>{
         '15': {name: 'arrow_left_up', width:100, height:100, path:'images/arrow_left_up.svg'},
         '16': {name: 'arrow_left_down', width:100, height:100, path:'images/arrow_left_down.svg'},
 
-        '17': {name: 'arrow_both_horizon', width:100, height:100, path:'images/arrow_both_horizon.svg'},
-        '18': {name: 'arrow_both_vertical', width:100, height:100, path:'images/arrow_both_vertical.svg'},
-        '19': {name: 'arrow_both_right_up', width:100, height:100, path:'images/arrow_both_right_up.svg'},
-        '20': {name: 'arrow_both_right_down', width:100, height:100, path:'images/arrow_both_right_down.svg'},
+        // '17': {name: 'arrow_both_horizon', width:100, height:100, path:'images/arrow_both_horizon.svg'},
+        // '18': {name: 'arrow_both_vertical', width:100, height:100, path:'images/arrow_both_vertical.svg'},
+        // '19': {name: 'arrow_both_right_up', width:100, height:100, path:'images/arrow_both_right_up.svg'},
+        // '20': {name: 'arrow_both_right_down', width:100, height:100, path:'images/arrow_both_right_down.svg'},
 
-        '21': {name: 'line_horizon', width:100, height:100, path:'images/line_horizon.svg'},
-        '22': {name: 'line_vertical', width:100, height:100, path:'images/line_vertical.svg'},
-        '23': {name: 'line_right_up', width:100, height:100, path:'images/line_right_up.svg'},
-        '24': {name: 'line_right_down', width:100, height:100, path:'images/line_right_down.svg'},
+        // '21': {name: 'line_horizon', width:100, height:100, path:'images/line_horizon.svg'},
+        // '22': {name: 'line_vertical', width:100, height:100, path:'images/line_vertical.svg'},
+        // '23': {name: 'line_right_up', width:100, height:100, path:'images/line_right_up.svg'},
+        // '24': {name: 'line_right_down', width:100, height:100, path:'images/line_right_down.svg'},
 
-        '26': {name: 'number_1', width:100, height:100, path:'images/number_1.svg'},
-        '27': {name: 'number_2', width:100, height:100, path:'images/number_2.svg'},
-        '28': {name: 'number_3', width:100, height:100, path:'images/number_3.svg'},
-        '29': {name: 'number_4', width:100, height:100, path:'images/number_4.svg'},
-        '30': {name: 'number_5', width:100, height:100, path:'images/number_5.svg'},
-        '31': {name: 'number_6', width:100, height:100, path:'images/number_6.svg'},
-        '32': {name: 'number_7', width:100, height:100, path:'images/number_7.svg'},
-        '33': {name: 'number_8', width:100, height:100, path:'images/number_8.svg'},
-        '34': {name: 'number_9', width:100, height:100, path:'images/number_9.svg'},
-        '35': {name: 'number_10', width:100, height:100, path:'images/number_10.svg'},
+        // '26': {name: 'number_1', width:100, height:100, path:'images/number_1.svg'},
+        // '27': {name: 'number_2', width:100, height:100, path:'images/number_2.svg'},
+        // '28': {name: 'number_3', width:100, height:100, path:'images/number_3.svg'},
+        // '29': {name: 'number_4', width:100, height:100, path:'images/number_4.svg'},
+        // '30': {name: 'number_5', width:100, height:100, path:'images/number_5.svg'},
+        // '31': {name: 'number_6', width:100, height:100, path:'images/number_6.svg'},
+        // '32': {name: 'number_7', width:100, height:100, path:'images/number_7.svg'},
+        // '33': {name: 'number_8', width:100, height:100, path:'images/number_8.svg'},
+        // '34': {name: 'number_9', width:100, height:100, path:'images/number_9.svg'},
+        // '35': {name: 'number_10', width:100, height:100, path:'images/number_10.svg'},
+        
+        '17': {name: 'text'},
+        '18': {name: 'banana', width:100, height:100, path:'images/banana.svg'},
     }
     useEffect(()=>{
         // console.log('use effect');
@@ -264,7 +266,7 @@ const DialogComponent: FC=()=>{
 
         // アーキテクチャ図の処理
         if(selectedDiagram == 'architecture'){
-            const arcs = await getDetections(4,7,1);
+            const arcs = await getDetections(3,5,7);
             drawPredictions(arcs, archiClasses);
             drawArchitecture(arcs, archiClasses);
             setLastDetects(arcs);
@@ -287,6 +289,15 @@ const DialogComponent: FC=()=>{
         // console.log(`box: ${boxIndex}, score: ${scoreIndex}, class: ${classIndex}`);
         // predictions.forEach( (p,i)=>{
         //     console.log('prediction: ', i, p.arraySync());
+        //     const pbox = p.arraySync() as Number[][][];
+        //     const pscore = p.arraySync() as Number[][];
+        //     const pclass = p.arraySync() as Number[][];
+        //     // Boxは長さ4
+        //     if(pbox.length == 1 && pbox[0].length == 100 && pbox[0][0].length == 4){ console.log(`[${i}]: maybe a box `); }
+        //     // Scoreはすべて1以下
+        //     if(pscore.length == 1 && pscore[0].length == 100 && pscore[0].every(v=>v<=1)){ console.log(`[${i}]: maybe a score`); }
+        //     // Classはすべて整数。かつクラスの値以内
+        //     if(pclass.length == 1 && pclass[0].length == 100 && pclass[0].every(v=>Number.isInteger(v)&&v<100)){ console.log(`[${i}]: maybe a class`); }
         // });
         const boxes = predictions[boxIndex].arraySync() as Number[][][];
         const scores = predictions[scoreIndex].arraySync() as Number[][];
@@ -310,6 +321,16 @@ const DialogComponent: FC=()=>{
             }
         });
         return detections;
+    };
+    /** 推論結果の調整を行う
+     * * TODO 矢印が重なっている場合、スコアが高い方を採用する
+     */
+    const adjustPredictions = (detections:Detection[], classes:{[name:string]:any})=>{
+        const newDecs:Detection[] = [];
+        for(const detection of detections){
+
+        }
+        return newDecs;
     };
     /** 推論結果を描画する */
     const drawPredictions = (detections:Detection[], classes:{[name:string]:any})=>{
