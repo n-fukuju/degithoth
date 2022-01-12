@@ -266,7 +266,7 @@ const DialogComponent: FC=()=>{
 
         // アーキテクチャ図の処理
         if(selectedDiagram == 'architecture'){
-            const arcs = await getDetections(3,5,7);
+            const arcs = await getDetections(2,1,7);
             drawPredictions(arcs, archiClasses);
             drawArchitecture(arcs, archiClasses);
             setLastDetects(arcs);
@@ -299,6 +299,7 @@ const DialogComponent: FC=()=>{
         //     // Classはすべて整数。かつクラスの値以内
         //     if(pclass.length == 1 && pclass[0].length == 100 && pclass[0].every(v=>Number.isInteger(v)&&v<100)){ console.log(`[${i}]: maybe a class`); }
         // });
+
         const boxes = predictions[boxIndex].arraySync() as Number[][][];
         const scores = predictions[scoreIndex].arraySync() as Number[][];
         const classes = predictions[classIndex].dataSync();
